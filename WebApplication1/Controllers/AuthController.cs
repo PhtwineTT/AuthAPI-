@@ -6,15 +6,18 @@ using AuthAPI.Filters;
 namespace AuthAPI.Controllers
 {
     [Route("api/[controller]")]
+    // Tự động xác thực 
     [ApiController]
     public class AuthController : ControllerBase
     {
+        // Dependency Injection qua interface (IServices)
         private readonly IServices _authService;
         public AuthController(IServices authService)
         {
             _authService = authService;
         }
 
+        // API đăng kí, dùng rate limit để giới hạn
         [HttpPost("register")]
         [RateLimit(maxRequest: 3, timeLimit: 10)]
         public async Task<IActionResult> Register(RegisterDto request)
@@ -25,6 +28,7 @@ namespace AuthAPI.Controllers
             return Ok("Đăng ký thành công");
         }
 
+        // API đăng nhập, dùng rate limit để giới hạn
         [HttpPost("login")]
         [RateLimit(maxRequest: 5, timeLimit: 60)]
         public async Task<IActionResult> Login(LoginDto request)
@@ -44,6 +48,7 @@ namespace AuthAPI.Controllers
             return Ok(tokens);
         }
 
+        // API xác thực người dùng qua token
         [HttpGet("profile")]
         [Authorize]
         public IActionResult Profile()
@@ -51,6 +56,7 @@ namespace AuthAPI.Controllers
             return Ok("Xác thực thành công");
         }
 
+        // Phân quyền
         [HttpGet("admin-only")]
         [Authorize(Roles = "Admin")]
         public IActionResult OnlyAdminEndpoint()
