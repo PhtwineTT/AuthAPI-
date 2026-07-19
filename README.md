@@ -5,14 +5,14 @@
 + **Thread-Safe Rate Limiting (Chống Spam Đa luồng):** 
     *   Triển khai thuật toán **Cửa sổ trượt (Sliding Window)** để đếm chính xác số lượng request trong thời gian thực.
     *   Sử dụng `ConcurrentDictionary` và `ConcurrentQueue` kết hợp với các thao tác nguyên tử (Atomic Operations) để xử lý đụng độ vùng nhớ.
-*   **Aspect-Oriented Programming (AOP):** 
++ **Aspect-Oriented Programming (AOP):** 
     *   Đóng gói logic Rate Limit thành các `ActionFilterAttribute` độc lập (`[RateLimit]`).
     *   Sử dụng cơ chế Short-circuiting (`OnActionExecuting`) để chặn các request vi phạm ngay từ vòng ngoài
-*   **Bảo mật Xác thực (Advanced Security):**
++ **Bảo mật Xác thực (Advanced Security):**
     *   **Mật khẩu:** Băm một chiều bằng **BCrypt** (tự động sinh Salt) chống tấn công Rainbow Table.
     *   **Access Token:** Phân quyền chuẩn RBAC thông qua chữ ký điện tử HMAC-SHA256 (JWT).
     *   **Refresh Token:** Xây dựng cơ chế Token Rotation, tạo chuỗi ngẫu nhiên bằng `RandomNumberGenerator` (CSPRNG - Mật mã học) thay vì hàm Random thông thường.
-*   **Kiến trúc Clean Code:**
++ **Kiến trúc Clean Code:**
     *   **Thin Controller:** Controller hoàn toàn không chứa logic nghiệp vụ, ủy quyền 100% qua DI (Dependency Injection).
     *   **Auto Validation:** Bắt lỗi định dạng dữ liệu đầu vào tự động thông qua Data Annotations (`[Required]`, `[RegularExpression]`).
 
