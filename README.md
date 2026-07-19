@@ -18,5 +18,5 @@
 
 ## 📁 Cấu trúc Thư mục Quan trọng
 *   `Filters/RateLimit.cs`: Cơ chế chặn Request tiền xử lý (AOP).
-*   `Services/RateLimitServices.cs`: Logic tính toán Cửa sổ trượt an toàn đa luồng.
-*   `Services/AuthService.cs`: Logic mã hóa BCrypt và sinh Token mật mã học.
+*   `Services/RateLimitServices.cs`: Logic tính toán Cửa sổ trượt.
+*   `Services/AuthService.cs`: Logic mã hóa BCrypt và sinh Token.
